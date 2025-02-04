@@ -1,0 +1,77 @@
+
+.container {
+    width: 100%;
+    max-width: 1016px;
+    margin: 0 auto;
+    padding: 0 2rem
+}
+
+.nav {
+     padding: 2rem 0 3rem;
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    justify-content: space-between;
+}
+.menu {
+    display: flex;
+    align-items: flex-end;
+}
+
+
+.menu a {
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding:0.4rem 0.8rem;
+}
+.buttons {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    gap:0.5rem;
+}
+
+.buttons .search {
+    display: flex;
+
+    border-color: rgb(64, 64, 64);
+    padding: 0.3rem 0.5rem;
+    border-width: 1px;
+    border-radius: 1px;
+    border-radius: 0.5rem;
+
+}
+
+.buttons .search span{
+
+    text-align: center;
+    padding: 0.3rem 0.5rem;
+    font-size: 0.8rem;
+    line-height: 1rem;
+    cursor: pointer;
+    color:rgb(181, 181, 181);
+}
+.buttons .search div {
+    border-color: rgb(64 64 64);
+    padding: 0.3rem 0.5rem;
+    border-width: 1px;
+    border-radius: 0.5rem;
+    font-size: .75rem;
+    line-height: 1rem;
+}
+.buttons .thema {
+
+}
+.container > footer {
+    width: 100%;
+    height: 5rem;
+    background-color: #f30000;
+}
+
+.container > footer {
+    padding: 2rem 0 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap:0.5rem;
+}
