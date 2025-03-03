@@ -2,6 +2,8 @@ import "./globals.css";
 import "./reset.css";
 import Link from "next/link";
 import style from "@/app/layout.module.css";
+import { useState } from "react";
+import { QueryClient } from "@tanstack/react-query";
 
 export function Header() {
   return (
@@ -42,6 +44,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const queryClient = new QueryClient();
   return (
     <html lang="en">
       <body>

@@ -2,6 +2,7 @@ import { PostData, Series } from "@/types";
 import styles from "./page.module.css";
 import { formatDate } from "@/util/formatData";
 import Link from "next/link";
+import AllPost from "./components/AllPost";
 export function SeriesItem({ id, title }: Series) {
   return (
     <Link href={`/library/${id}`} className={styles.book} key={id}>
@@ -12,35 +13,7 @@ export function SeriesItem({ id, title }: Series) {
   );
 }
 
-export function PostItem({
-  id,
-  title,
-  content,
-  views,
-  createdAt,
-  tags,
-}: PostData) {
-  const date = formatDate(createdAt);
-  return (
-    <Link href={`/blog/${id}`} className={styles.post}>
-      <h2>{title}</h2>
-      <p>{content}</p>
-      <div className={styles.postInfo}>
-        <div className={styles.tags}>
-          {tags.map((tag) => (
-            <span key={"tag" + tag.id}>{tag.name}</span>
-          ))}
-        </div>
-        <div className={styles.date}>
-          <span>{date[0]}</span>
-          <span>{date[1]}</span>
-        </div>
-      </div>
-    </Link>
-  );
-}
-
-async function AllPost() {
+async function AllPostPage() {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_SERVER_URL}all?page=0&size=10`
   );
@@ -56,9 +29,7 @@ async function AllPost() {
         <h1>All Posts</h1>
       </div>
       <div className={styles.postList}>
-        {posts.map((post: PostData) => (
-          <PostItem key={post.id} {...post} />
-        ))}
+        <AllPost posts={posts} />
       </div>
     </div>
   );
@@ -100,7 +71,7 @@ export default function Home() {
   return (
     <>
       <AllSeries />
-      <AllPost />
+      <AllPostPage />
     </>
   );
 }

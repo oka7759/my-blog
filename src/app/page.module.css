@@ -1,8 +1,6 @@
 .top {
-
 }
 .topTitleBox {
-
 }
 
 .topTitleBox h1 {
@@ -10,7 +8,7 @@
   line-height: 1;
   margin-bottom: 1rem;
 }
-.topSubTitleBox{
+.topSubTitleBox {
   margin-bottom: 1rem;
   font-size: 1rem;
   line-height: 1.5rem;
@@ -18,11 +16,11 @@
 .searchBox {
   margin-bottom: 1rem;
 }
-.searchBox >input {
-  padding:  0.5rem 1rem;
+.searchBox > input {
+  padding: 0.5rem 1rem;
   border-width: 1px;
-  border-radius: .375rem;
-   width: 100%;
+  border-radius: 0.375rem;
+  width: 100%;
   box-sizing: border-box;
 }
 .bookBox {
@@ -40,26 +38,24 @@
   padding: 2rem 2rem 3rem;
   position: relative;
   border-radius: 0.5rem;
-
 }
-.bookLineFirst{
+.bookLineFirst {
   position: absolute;
   width: 1px;
   height: 100%;
   left: 0.65rem;
   top: 0;
   bottom: 0;
-  background: rgb(64,64,64);
-
+  background: rgb(64, 64, 64);
 }
-.bookLineSecond{
+.bookLineSecond {
   position: absolute;
   width: 1px;
   height: 100%;
   left: 1.3rem;
   top: 0;
   bottom: 0;
-  background: rgb(64,64,64);
+  background: rgb(64, 64, 64);
 }
 .face {
   padding: 0.75rem 0.5rem;
@@ -74,7 +70,7 @@
 }
 
 .postList {
- display: grid;
+  display: grid;
   margin: 3rem 0;
   width: 100%;
   grid-template-columns: repeat(2, 1fr);
@@ -92,9 +88,9 @@
   font-weight: 700;
 }
 .post p {
-  margin-top: .25rem;
+  margin-top: 0.25rem;
   font-size: 1rem;
-  color:rgb(163,163,63);
+  color: rgb(163, 163, 63);
   margin-bottom: 1rem;
 }
 .postInfo {
@@ -106,8 +102,7 @@
 .tags {
   display: flex;
   flex-direction: row;
-  gap: 0.7rem
-
+  gap: 0.7rem;
 }
 .tags > span {
   font-size: 0.75rem;
