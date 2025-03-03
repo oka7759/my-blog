@@ -1,5 +1,78 @@
+import { PostData, Series } from "@/types";
 import styles from "./page.module.css";
-export function Top() {
+import { formatDate } from "@/util/formatData";
+import Link from "next/link";
+export function SeriesItem({ id, title }: Series) {
+  return (
+    <Link href={`/library/${id}`} className={styles.book} key={id}>
+      <div className={styles.bookLineFirst}></div>
+      <div className={styles.bookLineSecond}></div>
+      <div className={styles.face}>{title}</div>
+    </Link>
+  );
+}
+
+export function PostItem({
+  id,
+  title,
+  content,
+  views,
+  createdAt,
+  tags,
+}: PostData) {
+  const date = formatDate(createdAt);
+  return (
+    <Link href={`/blog/${id}`} className={styles.post}>
+      <h2>{title}</h2>
+      <p>{content}</p>
+      <div className={styles.postInfo}>
+        <div className={styles.tags}>
+          {tags.map((tag) => (
+            <span key={"tag" + tag.id}>{tag.name}</span>
+          ))}
+        </div>
+        <div className={styles.date}>
+          <span>{date[0]}</span>
+          <span>{date[1]}</span>
+        </div>
+      </div>
+    </Link>
+  );
+}
+
+async function AllPost() {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_SERVER_URL}all?page=0&size=10`
+  );
+  if (!response.ok) {
+    return <div>오류 발생</div>;
+  }
+  const allPosts: any = await response.json();
+  const posts: PostData[] = allPosts.content;
+
+  return (
+    <div className={styles.bottom}>
+      <div className={styles.topTitleBox}>
+        <h1>All Posts</h1>
+      </div>
+      <div className={styles.postList}>
+        {posts.map((post: PostData) => (
+          <PostItem key={post.id} {...post} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+async function AllSeries() {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_SERVER_URL}series`
+  );
+  if (!response.ok) {
+    return <div>오류 발생</div>;
+  }
+  const allSeries: Series[] = await response.json();
+
   return (
     <div className={styles.top}>
       <div className={styles.topTitleBox}>
@@ -15,145 +88,9 @@ export function Top() {
           <input></input>
         </div>
         <div className={styles.bookBox}>
-          <div className={styles.book}>
-            <div className={styles.bookLineFirst}></div>
-            <div className={styles.bookLineSecond}></div>
-            <div className={styles.face}>BOOK!</div>
-          </div>
-          <div className={styles.book}>
-            <div className={styles.bookLineFirst}></div>
-            <div className={styles.bookLineSecond}></div>
-            <div className={styles.face}>BOOK!</div>
-          </div>
-          <div className={styles.book}>
-            <div className={styles.bookLineFirst}></div>
-            <div className={styles.bookLineSecond}></div>
-            <div className={styles.face}>BOOK!</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export function Bottom() {
-  return (
-    <div className={styles.bottom}>
-      <div className={styles.topTitleBox}>
-        <h1>All Posts</h1>
-      </div>
-      <div className={styles.postList}>
-        <div className={styles.post}>
-          <h2>블로그에 RSS, JSON Feed 추가하기</h2>
-          <p>안녕하세요 제 블로그 글입니다.</p>
-          <div className={styles.postInfo}>
-            <div className={styles.tags}>
-              <span>css</span>
-              <span>nextjs</span>
-            </div>
-            <div className={styles.date}>
-              <span>23.0..29</span>
-              <span>10 ago</span>
-            </div>
-          </div>
-        </div>
-        <div className={styles.post}>
-          <h2>블로그에 RSS, JSON Feed 추가하기</h2>
-          <p>안녕하세요 제 블로그 글입니다.</p>
-          <div className={styles.postInfo}>
-            <div className={styles.tags}>
-              <span>css</span>
-              <span>nextjs</span>
-            </div>
-            <div className={styles.date}>
-              <span>23.0..29</span>
-              <span>10 ago</span>
-            </div>
-          </div>
-        </div>
-        <div className={styles.post}>
-          <h2>블로그에 RSS, JSON Feed 추가하기</h2>
-          <p>안녕하세요 제 블로그 글입니다.</p>
-          <div className={styles.postInfo}>
-            <div className={styles.tags}>
-              <span>css</span>
-              <span>nextjs</span>
-            </div>
-            <div className={styles.date}>
-              <span>23.0..29</span>
-              <span>10 ago</span>
-            </div>
-          </div>
-        </div>
-        <div className={styles.post}>
-          <h2>블로그에 RSS, JSON Feed 추가하기</h2>
-          <p>안녕하세요 제 블로그 글입니다.</p>
-          <div className={styles.postInfo}>
-            <div className={styles.tags}>
-              <span>css</span>
-              <span>nextjs</span>
-            </div>
-            <div className={styles.date}>
-              <span>23.0..29</span>
-              <span>10 ago</span>
-            </div>
-          </div>
-        </div>
-        <div className={styles.post}>
-          <h2>블로그에 RSS, JSON Feed 추가하기</h2>
-          <p>안녕하세요 제 블로그 글입니다.</p>
-          <div className={styles.postInfo}>
-            <div className={styles.tags}>
-              <span>css</span>
-              <span>nextjs</span>
-            </div>
-            <div className={styles.date}>
-              <span>23.0..29</span>
-              <span>10 ago</span>
-            </div>
-          </div>
-        </div>
-        <div className={styles.post}>
-          <h2>블로그에 RSS, JSON Feed 추가하기</h2>
-          <p>안녕하세요 제 블로그 글입니다.</p>
-          <div className={styles.postInfo}>
-            <div className={styles.tags}>
-              <span>css</span>
-              <span>nextjs</span>
-            </div>
-            <div className={styles.date}>
-              <span>23.0..29</span>
-              <span>10 ago</span>
-            </div>
-          </div>
-        </div>
-        <div className={styles.post}>
-          <h2>블로그에 RSS, JSON Feed 추가하기</h2>
-          <p>안녕하세요 제 블로그 글입니다.</p>
-          <div className={styles.postInfo}>
-            <div className={styles.tags}>
-              <span>css</span>
-              <span>nextjs</span>
-            </div>
-            <div className={styles.date}>
-              <span>23.0..29</span>
-              <span>10 ago</span>
-            </div>
-          </div>
-        </div>
-        <div className={styles.post}>
-          <h2>블로그에 RSS, JSON Feed 추가하기</h2>
-          <p>안녕하세요 제 블로그 글입니다.</p>
-          <div className={styles.postInfo}>
-            <div className={styles.tags}>
-              <span>css</span>
-              <span>nextjs</span>
-            </div>
-            <div className={styles.date}>
-              <span>23.0..29</span>
-              <span>10 ago</span>
-            </div>
-          </div>
+          {allSeries.map((series: Series) => {
+            return <SeriesItem key={series.id} {...series} />;
+          })}
         </div>
       </div>
     </div>
@@ -162,8 +99,8 @@ export function Bottom() {
 export default function Home() {
   return (
     <>
-      <Top />
-      <Bottom />
+      <AllSeries />
+      <AllPost />
     </>
   );
 }
