@@ -2,7 +2,6 @@ import "./globals.css";
 import "./reset.css";
 import Link from "next/link";
 import style from "@/app/layout.module.css";
-import { useState } from "react";
 import { QueryClient } from "@tanstack/react-query";
 
 export function Header() {
@@ -50,7 +49,7 @@ export default function RootLayout({
       <body>
         <div className={style.container}>
           <Header />
-          <main style={{ background: "gray" }}> {children}</main>
+          <main> {children}</main>
           <Footer />
         </div>
       </body>

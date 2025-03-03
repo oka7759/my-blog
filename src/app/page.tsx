@@ -1,6 +1,5 @@
 import { PostData, Series } from "@/types";
 import styles from "./page.module.css";
-import { formatDate } from "@/util/formatData";
 import Link from "next/link";
 import AllPost from "./components/AllPost";
 export function SeriesItem({ id, title }: Series) {

@@ -8,14 +8,17 @@ export function formatDate(isoString: string): string[] {
 
   // 현재 시간과의 차이를 계산 (밀리초 단위)
   const diffInMs = now.getTime() - date.getTime();
-  const diffInHours = Math.floor(diffInMs / (1000 * 60 * 60)); // 시간 단위
+  const diffInMinutes = Math.floor(diffInMs / (1000 * 60)); // 분 단위
+  const diffInHours = Math.floor(diffInMinutes / 60); // 시간 단위
   const diffInDays = Math.floor(diffInHours / 24); // 일 단위
 
   let timeAgo = "";
-  if (diffInHours < 24) {
-    timeAgo = "00h ago"; // 하루 이내면 00h ago
+  if (diffInMinutes < 60) {
+    timeAgo = `${diffInMinutes}m ago`; // 1시간 미만 → 'Xm ago'
+  } else if (diffInHours < 24) {
+    timeAgo = `${diffInHours}h ago`; // 24시간 미만 → 'Xh ago'
   } else {
-    timeAgo = `${diffInDays}d ago`; // 1일 이상이면 Xd ago
+    timeAgo = `${diffInDays}d ago`; // 1일 이상 → 'Xd ago'
   }
 
   return [`${year}.${month}.${day}`, timeAgo];
