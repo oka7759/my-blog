@@ -1,3 +1,5 @@
+import exp from 'constants';
+
 export interface PostData {
   id: number;
   title: string;
@@ -46,4 +48,8 @@ export interface PostMatter {
 export interface Post extends PostMatter {
   content: string;
   readingMinutes: number;
+}
+
+export interface SeriesDetail extends Series {
+  posts: PostData[];
 }

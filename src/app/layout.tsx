@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import Link from 'next/link';
 import { QueryClient } from '@tanstack/react-query';
+import ScrollProgressBar from './components/detail/ScrollProgressBar';
 
 export const metadata: Metadata = {
   title: 'OKA BLOG',
@@ -10,8 +11,9 @@ export const metadata: Metadata = {
 
 export function Header() {
   return (
-    <header className="pt-8 pb-12 z-50 flex justify-center items-center">
-      <nav className="container mx-auto flex justify-between items-center">
+    <header className="pt-8 pb-12 flex justify-center items-center">
+      <ScrollProgressBar />
+      <nav className="mx-auto flex w-full justify-between items-center">
         <ul className="flex space-x-4">
           <li>
             <Link className="text-xl font-semibold" href="/">
@@ -69,7 +71,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="light">
       <body>
-        <div className="mx-auto mt-12 w-full max-w-[950px] px-4">
+        <div className="mx-auto w-full max-w-[950px] px-4">
           <Header />
           <main className="mb-32"> {children}</main>
           <Footer />

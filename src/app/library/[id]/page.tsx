@@ -1,74 +1,138 @@
-import styles from "./page.module.css";
-export function Left() {
+import { PostData, SeriesDetail } from '@/types/types';
+import styles from './page.module.css';
+import { formatDate } from '@/util/formatData';
+import Link from 'next/link';
+export function Left({ title }: { title: string }) {
   return (
-    <div className={styles.left}>
-      <div className={styles.leftBox}>
-        <div className={styles.book}>
-          <div className={styles.bookFace}>Book</div>
-          <div className={styles.lineFirst}></div>
-          <div className={styles.lineLast}></div>
-        </div>
+    <div className="w-2/5 ">
+      <div className="relative rounded-lg w-56 h-72 bg-gray-400 p-7">
+        <div className="absolute inset-y-0 left-2.5 w-[1px] bg-gray-200"></div>
+        <div className="h-full bg-amber-50 px-2 py-3">{title}</div>
       </div>
     </div>
   );
 }
-export function Article() {
+export function Article({
+  id,
+  title,
+  content,
+  views,
+  createdAt,
+  tags,
+  idx,
+}: PostData & { idx: number }) {
+  const date = formatDate(createdAt);
   return (
-    <div className={styles.article}>
-      <div className={styles.number}>1.</div>
-      <div className={styles.content}>
-        <div className={styles.title}>
-          M1 터미널 아키텍처 설정 (arm64, x86_64){" "}
-        </div>
-        <div className={styles.body}>
-          <div className={styles.tags}>
-            <span>infra</span>
-
-            <span>infra</span>
-            <span>infra</span>
-          </div>
-          <div className={styles.dateBox}>
-            <span className={styles.date}>22.04.28</span>
-            <span>3d ago</span>
+    <Link href={`/blog/${id}`}>
+      <div className="flex gap-2 mb-4 py-4  px-4 overflow-hidden border rounded-md  shadow-md transition hover:shadow-xl dark:border-slate-700 dark:hover:border-white">
+        <div className="text-2xl font-semibold">{idx + 1}.</div>
+        <div className="flex flex-col  w-full">
+          <div className="text-2xl font-semibold mb-3">{title}</div>
+          <div className="flex justify-between">
+            <div className="flex flex-wrap items-center gap-2 mb-2">
+              {tags && tags.length > 0
+                ? tags.map((tag) => (
+                    <span
+                      className="text-xs rounded-lg px-2 py-0.5 transition-colors bg-pink-600 hover:text-primary hover:bg-gray-300 text-secondary font-medium"
+                      key={`tag${tag.id}`}
+                    >
+                      {tag.name}
+                    </span>
+                  ))
+                : null}
+            </div>
+            <div className="flex justify-between gap-3 text-sm text-gray-500 dark:text-gray-400">
+              <div className="flex items-center gap-1">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  className="lucide lucide-calendar-days w-3.5"
+                >
+                  <path d="M8 2v4"></path>
+                  <path d="M16 2v4"></path>
+                  <rect width="18" height="18" x="3" y="4" rx="2"></rect>
+                  <path d="M3 10h18"></path>
+                  <path d="M8 14h.01"></path>
+                  <path d="M12 14h.01"></path>
+                  <path d="M16 14h.01"></path>
+                  <path d="M8 18h.01"></path>
+                  <path d="M12 18h.01"></path>
+                  <path d="M16 18h.01"></path>
+                </svg>
+                <span>{date[0]}</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  className="lucide lucide-clock3 w-3.5"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16.5 12"></polyline>
+                </svg>
+                <span>{date[1]}</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
-export function Right() {
+async function Right({ seriesDetail }: { seriesDetail: SeriesDetail }) {
+  const { title, id, description, createdAt, posts } = seriesDetail;
+  const date = formatDate(createdAt);
   return (
-    <div className={styles.right}>
+    <div className="w-3/5">
       <div className={styles.description}>
-        <h1>안 해본 사람은 있어도 한 번만 하는 사람은 없다.</h1>
+        <h1>{description}</h1>
         <div className={styles.dateWrap}>
-          <span className={styles.date}>23.01.28</span>
-          <span className={styles.count}>10개</span>
+          <span className={styles.date}>{date[0]}</span>
+          <span className={styles.count}>{posts.length}개</span>
         </div>
       </div>
       <div className={styles.articleList}>
-        <Article />
-        <Article />
-        <Article />
-        <Article />
-        <Article />
-        <Article />
-        <Article />
-        <Article />
-        <Article />
-        <Article />
-        <Article />
-        <Article />
+        {posts.map((post, idx) => {
+          return <Article key={post.id} {...post} idx={idx} />;
+        })}
       </div>
     </div>
   );
 }
-export default function Home() {
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ id: string }>; // ②
+}) {
+  const { id } = await params;
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_SERVER_URL}series/${id}`
+  );
+  if (!response.ok) {
+    return <div>오류 발생</div>;
+  }
+
+  const seriesDetail: SeriesDetail = await response.json();
+
   return (
-    <div className={styles.wrap}>
-      <Left />
-      <Right />
+    <div className="flex w-full gap-4">
+      <Left title={seriesDetail.title} />
+      <Right seriesDetail={seriesDetail} />
     </div>
   );
 }

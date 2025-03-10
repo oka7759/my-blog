@@ -25,8 +25,8 @@ export function PostItem({
   const date = formatDate(createdAt);
   return (
     <Link href={`/blog/${id}`}>
-      <div className="flex h-full flex-col gap-3 overflow-hidden rounded-md  shadow-md transition hover:shadow-xl dark:border-slate-700 dark:hover:border-white">
-        <div className="relative aspect-video w-full rounded-t-md ">
+      <div className="flex h-full flex-col gap-3 overflow-hidden rounded-md border shadow-md transition hover:shadow-xl dark:border-slate-700 dark:hover:border-white">
+        <div className="relative h-48 w-full rounded-t-md border-b">
           <Image
             src={
               'https://d5br5.dev/_next/image?url=%2Fposts%2Fdeep_dive%2Fbrowser-paint%2Fthumbnail.png&w=640&q=75'
@@ -42,25 +42,23 @@ export function PostItem({
         </div>
         <div className="flex flex-1 flex-col justify-between p-4 pt-1">
           <div>
-            <div className="text-sm font-medium text-pink-600 lg:text-base">
-              {title}
-            </div>
             <h2 className="mb-3 mt-1 text-lg font-bold sm:text-xl md:text-lg line-clamp-2">
-              1{content}
+              {title}
             </h2>
+            <div className="flex flex-wrap items-center gap-2 mb-2">
+              {tags && tags.length > 0
+                ? tags.map((tag) => (
+                    <span
+                      className="text-xs rounded-lg px-2 py-0.5 transition-colors bg-pink-600 hover:text-primary hover:bg-gray-300 text-secondary font-medium"
+                      key={`tag${tag.id}`}
+                    >
+                      {tag.name}
+                    </span>
+                  ))
+                : null}
+            </div>
           </div>
-          <div className="flex flex-wrap items-center gap-2 mb-3">
-            {tags && tags.length > 0
-              ? tags.map((tag) => (
-                  <span
-                    className="text-xs rounded-lg px-2 py-0.5 transition-colors bg-gray-200 hover:text-primary hover:bg-gray-300 text-secondary font-normal"
-                    key={`tag${tag.id}`}
-                  >
-                    {tag.name}
-                  </span>
-                ))
-              : null}
-          </div>
+
           <div className="flex justify-between gap-3 text-sm text-gray-500 dark:text-gray-400">
             <div className="flex items-center gap-1">
               <svg
