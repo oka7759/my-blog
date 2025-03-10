@@ -1,4 +1,4 @@
-import { PostData, Series } from '@/types';
+import { PostData, Series } from '@/types/types';
 import Link from 'next/link';
 import AllPost from './components/AllPost';
 export function SeriesItem({ id, title }: Series) {
@@ -25,7 +25,6 @@ async function AllPostPage() {
   return (
     <>
       <h1 className="mb-4 text-5xl font-extrabold">All Posts</h1>
-
       <div className="mt-12 grid w-full gap-8 lg:grid-cols-2 lg:gap-12">
         <AllPost posts={posts} />
       </div>

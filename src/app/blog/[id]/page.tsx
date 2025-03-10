@@ -1,9 +1,10 @@
-import { PostData } from "@/types";
-import styles from "./page.module.css";
-import markdownToHtml from "@/app/lib/markdownToHtml";
-import * as cheerio from "cheerio";
-import markdownStyles from "./markdown-styles.module.css";
-import { formatDate } from "@/util/formatData";
+import { PostData } from '@/types/types';
+import styles from './page.module.css';
+
+import { formatDate } from '@/util/formatData';
+import Sidebar from '@/app/components/detail/Sidebar';
+import { parsePostDetail, parseToc } from '@/util/util';
+import { PostBody } from '@/app/components/detail/PostBody';
 
 export default async function Page({
   params,
@@ -18,20 +19,11 @@ export default async function Page({
     return <div>오류 발생</div>;
   }
   const allPosts: PostData = await response.json();
-
-  let content = await markdownToHtml(allPosts.content || "");
-  const $ = cheerio.load(content);
-  const headings: { id: string; text: string }[] = [];
-  $("h3").each((i, el) => {
-    const headingId = `heading-${i}`;
-    $(el).attr("id", headingId);
-    headings.push({ id: headingId, text: $(el).text() });
-  });
-
-  content = $.html();
   const date = formatDate(allPosts.createdAt);
+  const toc = parseToc(allPosts.content);
+  const post = await parsePostDetail(allPosts.content);
   return (
-    <>
+    <div className="prose mx-auto w-full max-w-[750px] px-5 dark:prose-invert sm:px-6">
       <section className={styles.top}>
         <div className={styles.titleBox}>
           <h1>{allPosts.title}</h1>
@@ -41,34 +33,10 @@ export default async function Page({
           </div>
         </div>
       </section>
-      <section className={styles.bottom}>
-        <div className={styles.content}>
-          <div
-            className={markdownStyles.markdown}
-            dangerouslySetInnerHTML={{ __html: content }}
-          />
-        </div>
-        <div className={styles.side}>
-          <div className={styles.bar}>
-            <div>
-              <p> on bar</p>
-              <ul>
-                {headings.map((heading) => (
-                  <li key={heading.id}>
-                    <a href={`#${heading.id}`}>{heading.text}</a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className={styles.btns}>
-              <button>1</button>
-              <button>1</button>
-              <button>1</button>
-              <button>1</button>
-            </div>
-          </div>
-        </div>
-      </section>
-    </>
+      <article className="relative">
+        <PostBody post={post} />
+        <Sidebar toc={toc} />
+      </article>
+    </div>
   );
 }

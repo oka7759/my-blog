@@ -67,11 +67,11 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   const queryClient = new QueryClient();
   return (
-    <html lang="en">
+    <html lang="en" className="light">
       <body>
-        <div className="container mx-auto max-w3xl px-5">
+        <div className="mx-auto mt-12 w-full max-w-[950px] px-4">
           <Header />
-          <main> {children}</main>
+          <main className="mb-32"> {children}</main>
           <Footer />
         </div>
       </body>

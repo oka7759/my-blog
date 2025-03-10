@@ -9,28 +9,42 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fec/remark-a11y-emoji": "^4.0.2",
     "@tanstack/react-query": "^5.66.11",
     "cheerio": "^1.0.0",
+    "clsx": "^2.1.1",
+    "dayjs": "^1.11.10",
+    "gray-matter": "^4.0.3",
     "next": "15.1.6",
+    "next-mdx-remote": "^5.0.0",
+    "prettier-plugin-tailwindcss": "^0.5.11",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-intersection-observer": "^9.15.1",
+    "reading-time": "^1.5.0",
+    "rehype-pretty-code": "^0.14.0",
+    "rehype-slug": "^6.0.0",
     "remark": "^15.0.1",
-    "remark-html": "^16.0.1"
+    "remark-breaks": "^4.0.0",
+    "remark-gfm": "^4.0.1",
+    "remark-html": "^16.0.1",
+    "tailwind-merge": "^3.0.2",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4.0.12",
+    "@tailwindcss/typography": "^0.5.10",
     "@tanstack/eslint-plugin-query": "^5.66.1",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "autoprefixer": "^10.4.20",
+    "autoprefixer": "^10.4.21",
     "eslint": "^9",
     "eslint-config-next": "15.1.6",
     "postcss": "^8.5.3",
     "prettier": "^3.5.3",
-    "tailwindcss": "^4.0.12",
+    "tailwindcss": "^3.4.17",
     "typescript": "^5"
   }
 }

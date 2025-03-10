@@ -11,9 +11,9 @@ export interface PostData {
 }
 
 export enum MarkupType {
-  HTML = "HTML",
-  MARKDOWN = "MARKDOWN",
-  TEXT = "TEXT",
+  HTML = 'HTML',
+  MARKDOWN = 'MARKDOWN',
+  TEXT = 'TEXT',
 }
 
 export interface Tag {
@@ -27,4 +27,23 @@ export interface Series {
   id: number;
   description: string;
   createdAt: string;
+}
+
+export interface HeadingItem {
+  text: string;
+  link: string;
+  indent: number;
+}
+
+export interface PostMatter {
+  title: string;
+  date: Date;
+  dateString: string;
+  thumbnail: string;
+  desc: string;
+}
+
+export interface Post extends PostMatter {
+  content: string;
+  readingMinutes: number;
 }
