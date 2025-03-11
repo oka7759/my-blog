@@ -14,6 +14,9 @@ export async function AllPostPage() {
   return (
     <>
       <h1 className="mb-4 text-5xl font-extrabold">All Posts</h1>
+      <div className="text-xl mb-4">
+        <p>지금까지 게시된 포스트 리스트입니다.</p>
+      </div>
       <div className="mt-12 grid w-full gap-8 lg:grid-cols-2 lg:gap-12">
         <AllPost posts={posts} />
       </div>

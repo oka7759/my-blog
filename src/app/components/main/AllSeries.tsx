@@ -12,13 +12,9 @@ export async function AllSeries() {
 
   return (
     <>
-      <h1 className="mb-4 text-5xl font-extrabold">Blog</h1>
+      <h1 className="mb-4 text-5xl font-extrabold">All Series</h1>
       <div className="text-xl mb-4">
-        <p>개발하면서 탐구한 것을 소소하게 기록하는 공간입니다.</p>
-        <p>
-          시리즈로 연재된 포스트는 아래 시리즈북으로 편리하게 열람할 수
-          있습니다🧐
-        </p>
+        <p>복수의 포스트를 시리즈로 묶어 한번에 볼수 있습니다.</p>
       </div>
       <div className="relative mb-4 w-full">
         <input

@@ -12,7 +12,7 @@ export function SeriesBox({
   const date = formatDate(createdAt);
   return (
     <Link href={`/library/${id}`} key={id}>
-      <div className='min-w-60 overflow-hidden rounded-md border shadow-md transition hover:shadow-xl dark:border-slate-700 dark:hover:border-white"'>
+      <div className="min-w-60 overflow-hidden rounded-md border shadow-md transition hover:shadow-xl dark:border-slate-700 dark:hover:border-white">
         <div className="px-3 pt-2 rounded-t-md border-b">
           <h2 className="mb-1 text-xl font-semibold line-clamp-1 ">{title}</h2>
           <p className="text-sm line-clamp-1 mb-1">{description}</p>

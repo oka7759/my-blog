@@ -1,20 +1,9 @@
-'use client';
-
-import React, { useEffect, useState } from 'react';
-import {
-  QueryClient,
-  QueryClientProvider,
-  useInfiniteQuery,
-} from '@tanstack/react-query';
-import { useInView } from 'react-intersection-observer';
 import { PostData } from '@/types/types';
 import { formatDate } from '@/util/formatData';
 import Link from 'next/link';
 import Image from 'next/image';
 
-const limit = 10;
-
-export function PostItem({
+export function PostByTag({
   id,
   title,
   content,
@@ -25,8 +14,8 @@ export function PostItem({
   const date = formatDate(createdAt);
   return (
     <Link href={`/blog/${id}`}>
-      <div className="flex h-full flex-col gap-3 overflow-hidden rounded-md border shadow-md transition hover:shadow-xl dark:border-slate-700 dark:hover:border-white">
-        <div className="relative h-48 w-full rounded-t-md border-b">
+      <div className="flex h-full flex-col gap-1 overflow-hidden rounded-md border shadow-md transition hover:shadow-xl dark:border-slate-700 dark:hover:border-white">
+        <div className="relative h-32 w-full rounded-t-md border-b">
           <Image
             src={
               'https://d5br5.dev/_next/image?url=%2Fposts%2Fdeep_dive%2Fbrowser-paint%2Fthumbnail.png&w=640&q=75'
@@ -40,7 +29,7 @@ export function PostItem({
             }}
           />
         </div>
-        <div className="flex flex-1 flex-col justify-between p-4 pt-1">
+        <div className="flex flex-1 flex-col justify-between px-4 py-2">
           <div>
             <h2 className="mb-3 mt-1 text-lg font-bold sm:text-xl md:text-lg line-clamp-2">
               {title}
@@ -130,64 +119,3 @@ export function PostItem({
     </Link>
   );
 }
-
-interface AllPostProps {
-  posts: PostData[];
-}
-
-const AllPostContent: React.FC<AllPostProps> = ({ posts }) => {
-  const { data, fetchNextPage, hasNextPage } = useInfiniteQuery<
-    PostData[],
-    Error
-  >({
-    queryFn: async ({ pageParam = 0 }) => {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_SERVER_URL}all?page=${pageParam}&size=${limit}`
-      );
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      const allPosts: any = await response.json();
-      const posts: PostData[] = allPosts.content;
-      return posts;
-    },
-    getNextPageParam: (lastPage, allPages) =>
-      lastPage.length === limit ? allPages.length : undefined,
-    initialPageParam: 0,
-    queryKey: ['posts'],
-    initialData: { pages: [posts], pageParams: [0] },
-    staleTime: Infinity,
-    refetchOnMount: false,
-  });
-
-  const { ref, inView } = useInView({ threshold: 0.5 });
-
-  useEffect(() => {
-    if (inView && hasNextPage) {
-      fetchNextPage();
-    }
-  }, [inView, hasNextPage, fetchNextPage]);
-
-  return (
-    <>
-      {data?.pages
-        .flat()
-        .map((post: PostData, index: number) => (
-          <PostItem key={post.id || index} {...post} />
-        ))}
-      <div ref={ref} />
-    </>
-  );
-};
-
-const AllPost: React.FC<AllPostProps> = ({ posts }) => {
-  const [queryClient] = useState(() => new QueryClient());
-
-  return (
-    <QueryClientProvider client={queryClient}>
-      <AllPostContent posts={posts} />
-    </QueryClientProvider>
-  );
-};
-
-export default AllPost;

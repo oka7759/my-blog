@@ -52,6 +52,7 @@ export default async function Page({
               </svg>
               <span>{date[0]}</span>
             </div>
+
             <div className="flex items-center gap-1">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

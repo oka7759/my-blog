@@ -8,22 +8,17 @@ export function Header() {
       <nav className="mx-auto flex w-full justify-between items-center">
         <ul className="flex space-x-4">
           <li>
-            <Link className="text-xl font-semibold" href="/">
+            <Link className="text-2xl font-bold" href="/">
               😆
             </Link>
           </li>
           <li>
-            <Link className="text-xl font-semibold" href={'/'}>
-              Blog
+            <Link className="text-2xl font-bold" href={'/'}>
+              Post
             </Link>
           </li>
           <li>
-            <Link className="text-xl font-semibold" href={'/code'}>
-              Code Piece
-            </Link>
-          </li>
-          <li>
-            <Link className="text-xl font-semibold" href={'/library'}>
+            <Link className="text-2xl font-bold" href={'/library'}>
               Library
             </Link>
           </li>

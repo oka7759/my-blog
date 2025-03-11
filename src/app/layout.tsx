@@ -14,8 +14,8 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   const queryClient = new QueryClient();
   return (
-    <html lang="en" className="light">
-      <body>
+    <html lang="en" className="h-full scroll-my-20 scroll-smooth light">
+      <body className="font-pretendard flex min-h-screen flex-col">
         <div className="mx-auto w-full max-w-[950px] px-4">
           <Header />
           <main className="mb-32"> {children}</main>
