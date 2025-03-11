@@ -49,7 +49,7 @@ export function PostItem({
               {tags && tags.length > 0
                 ? tags.map((tag) => (
                     <span
-                      className="text-xs rounded-lg px-2 py-0.5 transition-colors bg-pink-600 hover:text-primary hover:bg-gray-300 text-secondary font-medium"
+                      className="text-xs rounded-lg px-2 py-0.5 transition-colors bg-gray-300 hover:text-primary text-secondary font-medium"
                       key={`tag${tag.id}`}
                     >
                       {tag.name}

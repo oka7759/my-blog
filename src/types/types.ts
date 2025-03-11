@@ -22,6 +22,7 @@ export interface Tag {
   id: number;
   name: string;
   createdAt: string;
+  postCount: number;
 }
 
 export interface Series {
@@ -29,6 +30,7 @@ export interface Series {
   id: number;
   description: string;
   createdAt: string;
+  postCount: number;
 }
 
 export interface HeadingItem {
