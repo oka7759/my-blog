@@ -2,6 +2,23 @@ import { SearchData } from '@/types/types';
 import { SeriesBox } from '../components/library/SeriesIBox';
 import PostItem from '../components/main/PostItem';
 
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ search: string }>;
+}) {
+  const { search } = await searchParams;
+  return {
+    title: `OKA TECH - ${search} 검색결과`,
+    description: `${search} 검색결과`,
+    openGraph: {
+      title: `OKA TECH - ${search} 검색결과`,
+      description: `${search} 검색결과`,
+      images: ['/assets/no_images.png'],
+    },
+  };
+}
+
 export default async function Home({
   searchParams,
 }: {

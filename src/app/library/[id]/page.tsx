@@ -1,7 +1,6 @@
 import Article from '@/app/components/library/Article';
 import { SeriesDetail } from '@/types/types';
 import { formatDate } from '@/util/formatData';
-import { Metadata } from 'next';
 
 export async function generateMetadata({
   params,
@@ -30,11 +29,11 @@ export async function generateMetadata({
 
 function Left({ title }: { title: string }) {
   return (
-    <div className="w-2/5 ">
-      <div className="relative rounded-lg w-56 h-72 bg-gray-300 p-10">
-        <div className="absolute inset-y-0 left-2.5 w-[1px] bg-gray-200"></div>
-        <div className="absolute inset-y-0 left-5 w-[1px] bg-gray-200"></div>
-        <div className="h-full bg-amber-50 px-2 py-3 font-semibold text-xl">
+    <div className="hidden sm:w-2/5 sm:flex ">
+      <div className="relative rounded-lg w-56 h-72 bg-gray-300 p-10 dark:bg-white">
+        <div className="absolute inset-y-0 left-2.5 w-[1px] bg-gray-200 dark:bg-black"></div>
+        <div className="absolute inset-y-0 left-5 w-[1px] bg-gray-200 dark:bg-black"></div>
+        <div className="h-full bg-amber-50 px-2 py-3 font-semibold text-xl dark:bg-black">
           {title}
         </div>
       </div>
@@ -46,8 +45,8 @@ async function Right({ seriesDetail }: { seriesDetail: SeriesDetail }) {
   const { description, createdAt, posts } = seriesDetail;
   const date = formatDate(createdAt);
   return (
-    <div className="w-3/5">
-      <div className="w-full border px-3 pt-5 pb-3 rounded bg-gray-200 mb-16">
+    <div className=" w-full sm:w-3/5 ">
+      <div className="w-full border px-3 pt-5 pb-3 rounded bg-gray-200 mb-16 dark:bg-gray-700">
         <h1 className="text-xl font-semibold mb-3">{description}</h1>
         <div className="flex justify-between gap-3 text-sm text-gray-500 dark:text-gray-400">
           <div className="flex items-center gap-1">

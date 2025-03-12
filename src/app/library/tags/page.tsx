@@ -1,6 +1,5 @@
 import { PostByTag } from '@/app/components/library/tags/PostByTag';
 import { PostData } from '@/types/types';
-import { Metadata } from 'next';
 
 export async function generateMetadata({
   searchParams,

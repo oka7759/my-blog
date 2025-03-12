@@ -1,7 +1,7 @@
 import { PostData } from '@/types/types';
 import { formatDate } from '@/util/formatData';
 import Sidebar from '@/app/components/detail/Sidebar';
-import { parsePostDetail, parseToc, truncateText } from '@/util/util';
+import { parsePostDetail, parseToc } from '@/util/util';
 import { PostBody } from '@/app/components/detail/PostBody';
 import Giscus from '@/app/components/detail/Giscus';
 import { Metadata } from 'next';
