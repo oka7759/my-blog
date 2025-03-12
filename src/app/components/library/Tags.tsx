@@ -16,11 +16,8 @@ export async function Tags() {
       <div className="flex gap-2 flex-wrap mb-16">
         {tags.map((tag, idx) => {
           return (
-            <Link href={`/library/tags?q=${tag.name}`}>
-              <div
-                key={`tag-${idx}`}
-                className="border  rounded-xl flex py-1 px-2  font-normal text-xs bg-black text-white dark:border-slate-700 dark:hover:border-white"
-              >
+            <Link key={`tag-${idx}`} href={`/library/tags?q=${tag.name}`}>
+              <div className="border  rounded-xl flex py-1 px-2  font-normal text-xs bg-black text-white dark:border-slate-700 dark:hover:border-white">
                 {tag.name} <span className="pl-1">({tag.postCount})</span>
               </div>
             </Link>
