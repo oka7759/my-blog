@@ -53,3 +53,8 @@ export interface Post extends PostMatter {
 export interface SeriesDetail extends Series {
   posts: PostData[];
 }
+
+export interface SearchData {
+  series: Series[];
+  posts: PostData[];
+}
