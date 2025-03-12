@@ -19,8 +19,7 @@ export default async function Home({
   return (
     <>
       <h1 className="text-5xl font-semibold mb-4 border-b pb-3 align-baseline">
-        TAG - "{q}"
-        <span className="text-3xl align-baseline"> ({posts.length})</span>
+        "{q}"<span className="text-3xl align-baseline"> ({posts.length})</span>
       </h1>
       <div className="flex flex-col gap-10">
         {posts.map((post) => {
