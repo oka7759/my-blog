@@ -1,10 +1,12 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 const ScrollProgressBar = () => {
   const [mounted, setMounted] = useState(false);
   const [scrollTop, setScrollTop] = useState(0);
+  const pathname = usePathname(); // 현재 페이지의 경로를 가져옴
 
   const onScroll = () => {
     // This will calculate how many pixels the page is vertically
@@ -28,6 +30,10 @@ const ScrollProgressBar = () => {
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    setScrollTop(0);
+  }, [pathname]); // pathname이 변경될 때 실행됨
 
   if (!mounted) return null;
 

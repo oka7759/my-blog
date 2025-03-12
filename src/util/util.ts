@@ -38,3 +38,8 @@ export const parsePostDetail = async (mdContent: string): Promise<Post> => {
     .format('YYYY년 MM월 DD일');
   return { ...grayMatter, dateString, content, readingMinutes };
 };
+
+export const truncateText = (text: string, maxLength = 30) => {
+  if (!text) return '';
+  return text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
+};

@@ -1,3 +1,4 @@
+import ScrollProgressBar from './components/detail/ScrollProgressBar';
 import { AllPostPage } from './components/main/AllPostPage';
 import { AllSeries } from './components/main/AllSeries';
 

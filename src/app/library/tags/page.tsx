@@ -1,5 +1,24 @@
 import { PostByTag } from '@/app/components/library/tags/PostByTag';
 import { PostData } from '@/types/types';
+import { Metadata } from 'next';
+
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ q: string }>;
+}) {
+  const { q } = await searchParams;
+
+  return {
+    title: `OKA TECH - ${q} 검색결과`,
+    description: `OKA TECH - ${q} 검색결과`,
+    openGraph: {
+      title: `OKA TECH - ${q} 검색결과`,
+      description: `OKA TECH - ${q} 검색결과`,
+      images: ['/assets/no_images.png'],
+    },
+  };
+}
 
 export default async function Home({
   searchParams,

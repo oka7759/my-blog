@@ -1,9 +1,35 @@
 import { PostData } from '@/types/types';
 import { formatDate } from '@/util/formatData';
 import Sidebar from '@/app/components/detail/Sidebar';
-import { parsePostDetail, parseToc } from '@/util/util';
+import { parsePostDetail, parseToc, truncateText } from '@/util/util';
 import { PostBody } from '@/app/components/detail/PostBody';
 import Giscus from '@/app/components/detail/Giscus';
+import { Metadata } from 'next';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const { id } = await params;
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_SERVER_URL}${id}`
+  );
+  if (!response.ok) {
+    throw new Error(response.statusText);
+  }
+
+  const allPosts: PostData = await response.json();
+  return {
+    title: `OKA TECH - ${allPosts.title}`,
+    description: allPosts.description,
+    openGraph: {
+      title: `OKA TECH - ${allPosts.title}`,
+      description: allPosts.description,
+      images: ['/assets/no_images.png'],
+    },
+  };
+}
 
 export default async function Page({
   params,

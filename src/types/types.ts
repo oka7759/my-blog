@@ -5,6 +5,7 @@ export interface PostData {
   markupType: MarkupType;
   views: number;
   imageUrl: string;
+  description: string;
   createdAt: string;
   updatedAt: string;
   deletedAt: string;

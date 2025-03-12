@@ -1,6 +1,32 @@
 import Article from '@/app/components/library/Article';
 import { SeriesDetail } from '@/types/types';
 import { formatDate } from '@/util/formatData';
+import { Metadata } from 'next';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_SERVER_URL}series/${id}`
+  );
+  if (!response.ok) {
+    return <div>오류 발생</div>;
+  }
+  const seriesDetail: SeriesDetail = await response.json();
+
+  return {
+    title: `OKA TECH - ${seriesDetail.title} 시리즈`,
+    description: seriesDetail.description,
+    openGraph: {
+      title: `OKA TECH - ${seriesDetail.title} 시리즈`,
+      description: seriesDetail.description,
+      images: ['/assets/no_images.png'],
+    },
+  };
+}
 
 function Left({ title }: { title: string }) {
   return (
