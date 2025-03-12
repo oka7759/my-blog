@@ -1,4 +1,4 @@
-import { Post, PostData, SearchData, Series } from '@/types/types';
+import { SearchData } from '@/types/types';
 import { SeriesBox } from '../components/library/SeriesIBox';
 import PostItem from '../components/main/PostItem';
 

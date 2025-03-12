@@ -7,18 +7,18 @@ export default function PostItem({
   id,
   title,
   views,
+  imageUrl,
   createdAt,
   tags,
 }: PostData) {
   const date = formatDate(createdAt);
+  const validImageUrl = imageUrl ? imageUrl : '/assets/no_images.png';
   return (
     <Link href={`/blog/${id}`}>
       <div className="flex h-full flex-col gap-3 overflow-hidden rounded-md border shadow-md transition hover:shadow-xl dark:border-slate-700 dark:hover:border-white">
         <div className="relative h-48 w-full rounded-t-md border-b">
           <Image
-            src={
-              'https://d5br5.dev/_next/image?url=%2Fposts%2Fdeep_dive%2Fbrowser-paint%2Fthumbnail.png&w=640&q=75'
-            }
+            src={validImageUrl}
             alt={`thumbnail for ${title}`}
             sizes="(max-width: 1000px) 50vw, 450px"
             fill
