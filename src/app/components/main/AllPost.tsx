@@ -14,14 +14,7 @@ import Image from 'next/image';
 
 const limit = 10;
 
-export function PostItem({
-  id,
-  title,
-  content,
-  views,
-  createdAt,
-  tags,
-}: PostData) {
+export function PostItem({ id, title, views, createdAt, tags }: PostData) {
   const date = formatDate(createdAt);
   return (
     <Link href={`/blog/${id}`}>
@@ -68,9 +61,9 @@ export function PostItem({
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 className="lucide lucide-calendar-days w-3.5"
               >
                 <path d="M8 2v4"></path>
@@ -95,9 +88,9 @@ export function PostItem({
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   className="lucide lucide-eye w-4"
                 >
                   <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
@@ -113,9 +106,9 @@ export function PostItem({
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   className="lucide lucide-clock3 w-3.5"
                 >
                   <circle cx="12" cy="12" r="10"></circle>
@@ -147,8 +140,8 @@ const AllPostContent: React.FC<AllPostProps> = ({ posts }) => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
-      const allPosts: any = await response.json();
-      const posts: PostData[] = allPosts.content;
+      const allPosts: { content: PostData[] } = await response.json();
+      const posts = allPosts.content;
       return posts;
     },
     getNextPageParam: (lastPage, allPages) =>

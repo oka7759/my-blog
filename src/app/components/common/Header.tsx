@@ -26,12 +26,6 @@ export function Header() {
             </li>
           </ul>
           <div className="flex ml-auto items-center gap-2">
-            <button className="flex cursor-pointer items-center rounded-lg p-1 text-xs bg-secondary transition-colors bg-gray-200 hover:bg-gray-300">
-              <span className="px-3">search...</span>
-              <div className=" ml-auto rounded-lg px-2 py-1 bg-primary border transition-colors">
-                ⌘ K
-              </div>
-            </button>
             <ThemeToggle />
           </div>
         </nav>

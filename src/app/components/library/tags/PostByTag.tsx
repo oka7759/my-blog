@@ -3,14 +3,7 @@ import { formatDate } from '@/util/formatData';
 import Link from 'next/link';
 import Image from 'next/image';
 
-export function PostByTag({
-  id,
-  title,
-  content,
-  views,
-  createdAt,
-  tags,
-}: PostData) {
+export function PostByTag({ id, title, views, createdAt, tags }: PostData) {
   const date = formatDate(createdAt);
   return (
     <Link href={`/blog/${id}`}>
@@ -57,9 +50,9 @@ export function PostByTag({
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 className="lucide lucide-calendar-days w-3.5"
               >
                 <path d="M8 2v4"></path>
@@ -84,9 +77,9 @@ export function PostByTag({
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   className="lucide lucide-eye w-4"
                 >
                   <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
@@ -102,9 +95,9 @@ export function PostByTag({
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   className="lucide lucide-clock3 w-3.5"
                 >
                   <circle cx="12" cy="12" r="10"></circle>

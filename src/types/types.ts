@@ -1,5 +1,3 @@
-import exp from 'constants';
-
 export interface PostData {
   id: number;
   title: string;

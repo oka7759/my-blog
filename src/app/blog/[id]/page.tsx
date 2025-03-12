@@ -3,6 +3,7 @@ import { formatDate } from '@/util/formatData';
 import Sidebar from '@/app/components/detail/Sidebar';
 import { parsePostDetail, parseToc } from '@/util/util';
 import { PostBody } from '@/app/components/detail/PostBody';
+import Giscus from '@/app/components/detail/Giscus';
 
 export default async function Page({
   params,
@@ -78,6 +79,7 @@ export default async function Page({
         <PostBody post={post} />
         <Sidebar toc={toc} />
       </article>
+      <Giscus />
     </div>
   );
 }

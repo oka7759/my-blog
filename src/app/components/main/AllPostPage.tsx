@@ -8,8 +8,8 @@ export async function AllPostPage() {
   if (!response.ok) {
     return <div>오류 발생</div>;
   }
-  const allPosts: any = await response.json();
-  const posts: PostData[] = allPosts.content;
+  const allPosts: { content: PostData[] } = await response.json();
+  const posts = allPosts.content;
 
   return (
     <>
