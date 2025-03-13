@@ -14,7 +14,9 @@ export async function generateMetadata({
     openGraph: {
       title: `OKA TECH - ${q} 검색결과`,
       description: `OKA TECH - ${q} 검색결과`,
-      images: ['/assets/no_images.png'],
+      images: [
+        `${process.env.NEXT_PUBLIC_API_SERVER_URL}/assets/no_images.png`,
+      ],
     },
   };
 }

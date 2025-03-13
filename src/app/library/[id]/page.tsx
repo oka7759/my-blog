@@ -22,7 +22,9 @@ export async function generateMetadata({
     openGraph: {
       title: `OKA TECH - ${seriesDetail.title} 시리즈`,
       description: seriesDetail.description,
-      images: ['/assets/no_images.png'],
+      images: [
+        `${process.env.NEXT_PUBLIC_API_SERVER_URL}/assets/no_images.png`,
+      ],
     },
   };
 }

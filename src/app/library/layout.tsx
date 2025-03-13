@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'OOKA-TECH Library',
     description: 'OKA-TECH의 모든 기록물을 한번에 확인하는 공간입니다.',
-    images: ['/assets/no_images.png'],
+    images: [`${process.env.NEXT_PUBLIC_API_SERVER_URL}/assets/no_images.png`],
   },
 };
 

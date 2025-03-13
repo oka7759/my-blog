@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'OKA-TECH Blog',
     description: 'OKA-TECH의 기술 블로그입니다.',
-    images: ['/assets/no_images.png'],
+    images: [`${process.env.NEXT_PUBLIC_API_SERVER_URL}/assets/no_images.png`],
   },
 };
 

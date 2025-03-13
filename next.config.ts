@@ -16,6 +16,11 @@ const nextConfig: NextConfig = {
         protocol: 'http',
         hostname: 'localhost',
       },
+      {
+        protocol: 'https',
+        hostname: 'kr.object.ncloudstorage.com',
+        pathname: '/oka-tech/images/**', 
+      },
     ],
   },
 };

@@ -26,7 +26,7 @@ export async function generateMetadata({
     openGraph: {
       title: `OKA TECH - ${allPosts.title}`,
       description: allPosts.description,
-      images: ['/assets/no_images.png'],
+      images: [allPosts.imageUrl],
     },
   };
 }
