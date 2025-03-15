@@ -34,8 +34,8 @@ export default async function Home({
     return <div>오류 발생</div>;
   }
   const searchData: SearchData = await response.json();
-
-  return (
+  
+    return (
     <>
       <h1 className="text-5xl font-semibold mb-4"> {`"${search}" 검색결과`}</h1>
       <p className="text-base font-light mb-8">

@@ -1,6 +1,11 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
+  logging: {
+    fetches: {
+      fullUrl: true,
+    },
+  },
   output: 'standalone',
   images: {
     remotePatterns: [
@@ -19,7 +24,7 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'kr.object.ncloudstorage.com',
-        pathname: '/oka-tech/images/**', 
+        pathname: '/oka-tech/images/**',
       },
     ],
   },
