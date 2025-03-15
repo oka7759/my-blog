@@ -11,7 +11,7 @@ import { PostData } from '@/types/types';
 import PostItem from './PostItem';
 import Skeleton from './Skeleton';
 
-const limit = 10;
+const limit = 6;
 
 interface AllPostProps {
   posts: PostData[];

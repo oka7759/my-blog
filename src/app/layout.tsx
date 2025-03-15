@@ -3,6 +3,7 @@ import './globals.css';
 import { Header } from './components/common/Header';
 import { Footer } from './components/common/Footer';
 import { ThemeProvider } from './components/main/theme/ThemeProvider';
+import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
 
 export const metadata: Metadata = {
   title: 'OKA-TECH Blog',
@@ -31,6 +32,8 @@ export default function RootLayout({
           </main>
           <Footer />
         </ThemeProvider>
+        <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GA_ID || ''} />
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || ''} />
       </body>
     </html>
   );

@@ -3,7 +3,7 @@ import AllPost from './AllPost';
 
 export async function AllPostPage() {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_SERVER_URL}all?page=0&size=10`,
+    `${process.env.NEXT_PUBLIC_API_SERVER_URL}all?page=0&size=6`,
     { cache: 'no-store' }
   );
   if (!response.ok) {
