@@ -2,7 +2,10 @@ import { Tag } from '@/types/types';
 import Link from 'next/link';
 
 export async function Tags() {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}tags`);
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_SERVER_URL}tags`,
+    { cache: 'no-store' }
+  );
   if (!response.ok) {
     return <div>오류 발생</div>;
   }

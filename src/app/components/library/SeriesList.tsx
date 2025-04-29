@@ -3,7 +3,8 @@ import { SeriesBox } from './SeriesIBox';
 
 export async function SeriesList() {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_SERVER_URL}series`
+    `${process.env.NEXT_PUBLIC_API_SERVER_URL}series`,
+    { cache: 'no-store' }
   );
   if (!response.ok) {
     return <div>오류 발생</div>;
